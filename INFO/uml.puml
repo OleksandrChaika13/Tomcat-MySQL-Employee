@@ -1,0 +1,48 @@
+@startuml
+class org.example.app.entity.Employee {
+- int id
+- String name
+- String position
+- String phone
++ int getId()
++ String getName()
++ String getPosition()
++ String getPhone()
+}
+class org.example.app.controller.EmployeeController {
+- EmployeeRepository repository
+# void doPost(HttpServletRequest,HttpServletResponse)
+# void doGet(HttpServletRequest,HttpServletResponse)
+- void listEmployee(HttpServletRequest,HttpServletResponse)
+- void showNewForm(HttpServletRequest,HttpServletResponse)
+- void showEditForm(HttpServletRequest,HttpServletResponse)
+- void insertUser(HttpServletRequest,HttpServletResponse)
+- void updateUser(HttpServletRequest,HttpServletResponse)
+- void deleteUser(HttpServletRequest,HttpServletResponse)
+}
+class org.example.app.repository.EmployeeRepository {
+- {static} Logger LOGGER
++ void createEmployee(Employee)
++ List<Employee> readEmployees()
++ Employee getEmployeeById(int)
++ void updateEmployee(Employee)
++ void deleteEmployee(Employee)
+}
+class org.example.app.credentials.Credentials {
++ {static} String DB_PASS
+}
+class org.example.app.database.DBConn {
+- {static} Logger LOGGER
++ {static} Connection connect()
+}
+class org.example.app.utils.Constants {
++ {static} String DB_DRIVER
++ {static} String DB_URL
++ {static} String DB_NAME
++ {static} String DB_USER
++ {static} String DB_PASS
+}
+
+
+jakarta.servlet.http.HttpServlet <|-- org.example.app.controller.EmployeeController
+@enduml
